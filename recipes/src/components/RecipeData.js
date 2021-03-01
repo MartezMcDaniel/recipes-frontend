@@ -1,7 +1,7 @@
 import React from "react";
 import Recipes from "./Recipes";
 
-function Recipe({ recipes }) {
+function RecipeData({ recipes }) {
   return (
     <div>
       {recipes.map((item) => (
@@ -11,4 +11,4 @@ function Recipe({ recipes }) {
   );
 }
 
-export default Recipe;
+export default RecipeData;

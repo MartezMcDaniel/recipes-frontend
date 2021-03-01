@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Recipe from "./components/Recipe";
+import RecipeData from "./components/RecipeData";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import PostForm from "./components/PostForm";
 
@@ -32,7 +32,7 @@ function App() {
           <Route
             path="/recipes"
             exact
-            render={() => <Recipe recipes={recipes} />}
+            render={() => <RecipeData recipes={recipes} />}
           />
           <Route path="/create" component={PostForm} recipes={recipes} />
         </Switch>
