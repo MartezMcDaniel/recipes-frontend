@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,15 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.recipe-card {
+  border: 1px solid black;
+  width: 700px;
+  margin: 20px 50px;
+  padding: 50px;
+}
+
+.recipe-card img {
+  width: 400px;
 }
