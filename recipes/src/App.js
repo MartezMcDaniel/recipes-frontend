@@ -2,10 +2,12 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Recipe from "./components/Recipe";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import PostForm from "./components/PostForm";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
+
   let http = "http://localhost:8000/recipes/";
 
   useEffect(() => {
@@ -13,7 +15,7 @@ function App() {
       await axios
         .get(http)
         .then((res) => {
-          console.log(res.data);
+          console.log("recipes", res.data);
           setRecipes(res.data);
         })
         .catch((error) => {
@@ -26,7 +28,14 @@ function App() {
   return (
     <Router>
       <div>
-        <Recipe recipes={recipes} />
+        <Switch>
+          <Route
+            path="/recipes"
+            exact
+            render={() => <Recipe recipes={recipes} />}
+          />
+          <Route path="/create" component={PostForm} />
+        </Switch>
       </div>
     </Router>
   );
