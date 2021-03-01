@@ -34,7 +34,7 @@ function App() {
             exact
             render={() => <Recipe recipes={recipes} />}
           />
-          <Route path="/create" component={PostForm} />
+          <Route path="/create" component={PostForm} recipes={recipes} />
         </Switch>
       </div>
     </Router>
