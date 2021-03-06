@@ -1,14 +1,18 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import RecipeData from "./components/RecipeData";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+
+import Recipes from "./components/Recipes";
+import Results from "./components/Results";
 import PostForm from "./components/PostForm";
+import RecipeDetail from "./components/RecipeDetail";
+import Nav from "./components/Nav";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
 
-  let http = "http://localhost:8000/recipes/";
+  let http = "https://frozen-brook-00437.herokuapp.com/recipes/";
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -24,18 +28,20 @@ function App() {
     };
     getRecipes();
   }, [http]);
-
   return (
     <Router>
       <div>
-        <Switch>
-          <Route
-            path="/recipes"
-            exact
-            render={() => <RecipeData recipes={recipes} />}
-          />
-          <Route path="/create" component={PostForm} recipes={recipes} />
-        </Switch>
+        {/* <Switch> */}
+        <Nav />
+        <Route
+          exact
+          path="/recipes"
+          render={() => <Recipes recipes={recipes} />}
+        />
+        <Route path="/recipes/:id" exact render={() => <RecipeDetail />} />
+        <Route path="/results" exact render={() => <Results />} />
+        <Route path="/create" component={PostForm} />
+        {/* </Switch> */}
       </div>
     </Router>
   );

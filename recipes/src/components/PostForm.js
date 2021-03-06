@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function PostForm({ recipes }) {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -10,14 +12,14 @@ function PostForm({ recipes }) {
     directions: "",
     image: "",
   });
-  let http = "http://localhost:8000/recipes/";
+  let http = "https://frozen-brook-00437.herokuapp.com/recipes/";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     axios
       .post(http, formData)
       .then((res) => {
@@ -26,8 +28,9 @@ function PostForm({ recipes }) {
       .catch((error) => {
         console.log(error);
       });
+    history.push("/recipes");
   };
-  console.log(setFormData);
+
   return (
     <div className="form">
       <form>
@@ -43,6 +46,7 @@ function PostForm({ recipes }) {
         <input type="text" name="directions" onChange={handleChange} />
         <label htmlFor="image">Image</label>
         <input type="text" name="image" onChange={handleChange} />
+
         <input type="submit" value="Submit" onClick={handleSubmit} />
       </form>
     </div>
