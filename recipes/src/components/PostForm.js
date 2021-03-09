@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function PostForm({ recipes }) {
   const history = useHistory();
@@ -48,6 +49,9 @@ function PostForm({ recipes }) {
         <input type="text" name="image" onChange={handleChange} />
 
         <input type="submit" value="Submit" onClick={handleSubmit} />
+        <Link to="/recipes" className="cancel-btn">
+          Cancel
+        </Link>
       </form>
     </div>
   );

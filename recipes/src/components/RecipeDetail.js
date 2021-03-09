@@ -12,6 +12,7 @@ function RecipeDetail() {
     directions: "",
     image: "",
   });
+  const [deleteData, setDeleteData] = useState({});
 
   const { id } = useParams();
 
@@ -41,6 +42,22 @@ function RecipeDetail() {
         console.log(error);
       });
   };
+  const deleteRecipe = async () => {
+    await axios
+      .delete(`https://frozen-brook-00437.herokuapp.com/recipes/${id}`)
+      .then((res) => {
+        console.log(res);
+        setDeleteData.apply(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // const handleSubmit (){
+
+  // }
+
   return (
     <div className="recipe-card">
       {Object.keys(recipe).length > 0 ? (
@@ -48,6 +65,9 @@ function RecipeDetail() {
           <p>{recipe.name}</p>
           <Link to="/create">
             <p>Edit Recipe</p>
+          </Link>
+          <Link to="/recipes">
+            <p>Delete Recipe</p>
           </Link>
           <p>{recipe.ingredients}</p>
           <img src={recipe.image} alt="food" />

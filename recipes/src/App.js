@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Recipes from "./components/Recipes";
 import Results from "./components/Results";
@@ -31,17 +31,18 @@ function App() {
   return (
     <Router>
       <div>
-        {/* <Switch> */}
         <Nav />
-        <Route
-          exact
-          path="/recipes"
-          render={() => <Recipes recipes={recipes} />}
-        />
-        <Route path="/recipes/:id" exact render={() => <RecipeDetail />} />
-        <Route path="/results" exact render={() => <Results />} />
-        <Route path="/create" component={PostForm} />
-        {/* </Switch> */}
+
+        <Switch>
+          <Route
+            exact
+            path="/recipes"
+            render={() => <Recipes recipes={recipes} />}
+          />
+          <Route path="/recipes/:id" exact render={() => <RecipeDetail />} />
+          <Route path="/results" exact render={() => <Results />} />
+          <Route path="/create" component={PostForm} />
+        </Switch>
       </div>
     </Router>
   );

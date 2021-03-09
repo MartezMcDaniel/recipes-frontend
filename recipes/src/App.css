@@ -85,3 +85,21 @@ input[type="submit"]:hover {
 .recipe-card {
   text-decoration: none;
 }
+
+.cancel-btn {
+  width: 50%;
+  background-color: red;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 30px;
+}
+.cancel-btn:hover {
+  background-color: rgb(170, 3, 3);
+}
