@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -12,7 +12,6 @@ function RecipeDetail() {
     directions: "",
     image: "",
   });
-  const [deleteData, setDeleteData] = useState({});
 
   const { id } = useParams();
 
@@ -32,43 +31,12 @@ function RecipeDetail() {
     getRecipe();
   }, [id]);
 
-  const updateRecipe = async () => {
-    await axios
-      .put(`https://frozen-brook-00437.herokuapp.com/recipes/${id}`, editData)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  const deleteRecipe = async () => {
-    await axios
-      .delete(`https://frozen-brook-00437.herokuapp.com/recipes/${id}`)
-      .then((res) => {
-        console.log(res);
-        setDeleteData.apply(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  // const handleSubmit (){
-
-  // }
-
   return (
     <div className="recipe-card">
       {Object.keys(recipe).length > 0 ? (
         <section>
           <p>{recipe.name}</p>
-          <Link to="/create">
-            <p>Edit Recipe</p>
-          </Link>
-          <Link to="/recipes">
-            <p>Delete Recipe</p>
-          </Link>
+
           <p>{recipe.ingredients}</p>
           <img src={recipe.image} alt="food" />
         </section>

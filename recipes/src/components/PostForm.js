@@ -9,7 +9,7 @@ function PostForm({ recipes }) {
     name: "",
     description: "",
     cuisine: "",
-    ingredientts: "",
+    ingredients: "",
     directions: "",
     image: "",
   });

@@ -8,6 +8,7 @@ import Results from "./components/Results";
 import PostForm from "./components/PostForm";
 import RecipeDetail from "./components/RecipeDetail";
 import Nav from "./components/Nav";
+import editRecipe from "./components/EditRecipe";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -28,6 +29,23 @@ function App() {
     };
     getRecipes();
   }, [http]);
+
+  const updateRecipe = (editedRecipe) => {
+    const recipesClone = recipes;
+    const recipeIndex = recipesClone.findIndex((recipe) => {
+      return recipe.id === editedRecipe.id;
+    });
+    recipesClone.splice(recipeIndex, 1, editedRecipe);
+    setRecipes(recipesClone);
+  };
+
+  const deleteRecipe = (id) => {
+    const updatedRecipes = recipes.filter((recipe) => {
+      return recipe.id !== id;
+    });
+    setRecipes(updatedRecipes);
+  };
+
   return (
     <Router>
       <div>
@@ -37,11 +55,18 @@ function App() {
           <Route
             exact
             path="/recipes"
-            render={() => <Recipes recipes={recipes} />}
+            render={() => (
+              <Recipes
+                recipes={recipes}
+                updateRecipe={updateRecipe}
+                deleteRecipe={deleteRecipe}
+              />
+            )}
           />
           <Route path="/recipes/:id" exact render={() => <RecipeDetail />} />
           <Route path="/results" exact render={() => <Results />} />
           <Route path="/create" component={PostForm} />
+          <Route path="/recipes/edit/:id" component={editRecipe} />
         </Switch>
       </div>
     </Router>
