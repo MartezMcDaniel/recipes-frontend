@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import Nav from "./Nav";
+require("dotenv").config();
 
 function Results(props) {
   const location = useLocation();
@@ -10,8 +11,8 @@ function Results(props) {
 
   const [recipes, setRecipes] = useState([]);
 
-  const APP_ID = "b1550a21";
-  const APP_KEY = "aed3e4ef229f3e2d73363e922350ce71";
+  const APP_ID = process.env.APP_ID;
+  const APP_KEY = process.env.APP_KEY;
 
   useEffect(() => {
     const searchAPI = async () => {
