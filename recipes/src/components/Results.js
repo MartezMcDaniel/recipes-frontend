@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
 
 function Results(props) {
   const location = useLocation();
   const { state } = location;
   const search = state.search;
-
-  console.log("searching for... ", search);
 
   const [recipes, setRecipes] = useState([]);
 
@@ -16,13 +14,14 @@ function Results(props) {
 
   useEffect(() => {
     const searchAPI = async () => {
-      const url = `https://api.edamam.com/search?q=${search}&health=vegetarian&vegan&app_id=${APP_ID}&app_key=${APP_KEY}`;
+      const url = `https://api.edamam.com/search?q=${search}&health=vegetarian&health=vegan&app_id=${APP_ID}&app_key=${APP_KEY}&to=5`;
       await axios
         .get(url)
         .then((res) => {
           console.log(res.data);
           if (Array.isArray(res.data.hits)) {
             setRecipes(res.data.hits);
+            console.log(res.data);
           }
         })
         .catch((error) => {
@@ -35,16 +34,28 @@ function Results(props) {
 
   return (
     <div>
-      <section>
-        {recipes.map((item) => (
-          <div className="recipe-card">
-            <p>{item.recipe.calories}</p>
-            <img src={item.recipe.image} alt="image" />
-            <p>{item.recipe.label}</p>
-            <p>{item.recipe.healthLabels[0]}</p>
-          </div>
-        ))}
-      </section>
+      <div className="entire-page">
+        {Object.keys(recipes).length > 0 ? (
+          <section>
+            {recipes.map((item) => (
+              <div className="recipe-card">
+                <img src={item.recipe.image} alt="image" />
+                <p>{item.recipe.label}</p>
+                <a href={item.recipe.url} target="blank">
+                  View Recipe
+                </a>
+              </div>
+            ))}
+          </section>
+        ) : (
+          <section>
+            "Item Not Found"
+            <Link to="/recipes">
+              <button>Return to Search</button>
+            </Link>
+          </section>
+        )}
+      </div>
     </div>
   );
 }
