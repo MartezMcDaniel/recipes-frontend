@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import Nav from "./Nav";
 
 function RecipeDetail() {
   const [recipe, setRecipe] = useState({});
@@ -33,20 +34,22 @@ function RecipeDetail() {
 
   return (
     <div>
+      <Nav />
+
       {Object.keys(recipe).length > 0 ? (
         <section>
-          <p style={{ fontSize: "20px" }}>{recipe.name}</p>
+          <p style={{ fontSize: "30px" }}>{recipe.name}</p>
           <img
             style={{ maxWidth: "600px", maxHeight: "600px" }}
             src={recipe.image}
             alt="food"
           />
 
-          <p>
+          <p style={{ fontSize: "20px" }}>
             Ingredients: <br />
             {recipe.ingredients}
           </p>
-          <p>
+          <p style={{ fontSize: "20px" }}>
             Directions: <br /> {recipe.directions}
           </p>
         </section>

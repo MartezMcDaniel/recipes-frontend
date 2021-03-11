@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
+import Nav from "./Nav";
 
 function Results(props) {
   const location = useLocation();
@@ -34,6 +35,7 @@ function Results(props) {
 
   return (
     <div className="entire-card">
+      <Nav />
       {Object.keys(recipes).length > 0 ? (
         <section>
           {recipes.map((item) => (

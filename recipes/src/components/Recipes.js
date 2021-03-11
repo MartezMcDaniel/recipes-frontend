@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import Nav from "./Nav";
 
 function Recipes({ recipes, deleteRecipe }) {
   const deleteRecipeBackend = async (id) => {
@@ -16,6 +17,7 @@ function Recipes({ recipes, deleteRecipe }) {
 
   return (
     <div>
+      <Nav />
       <div className="entire-page">
         <div className="page">
           <div className="container">
@@ -27,26 +29,28 @@ function Recipes({ recipes, deleteRecipe }) {
                 <h1>{item.name}</h1>
                 <h4>{item.description}</h4>
                 <h4>{item.cuisine}</h4>
+                <section>
+                  <Link
+                    to={{
+                      pathname: `/recipes/edit/${item.id}`,
+                      state: {
+                        ...item,
+                      },
+                    }}
+                  >
+                    <button className="del-bttn">Update Recipe</button>
+                  </Link>
+                  <button
+                    className="del-btn"
+                    onClick={() => {
+                      deleteRecipeBackend(item.id);
+                    }}
+                  >
+                    Delete
+                  </button>
 
-                <Link
-                  to={{
-                    pathname: `/recipes/edit/${item.id}`,
-                    state: {
-                      ...item,
-                    },
-                  }}
-                >
-                  <button>Update Recipe</button>
-                </Link>
-                <button
-                  onClick={() => {
-                    deleteRecipeBackend(item.id);
-                  }}
-                >
-                  Delete
-                </button>
-
-                <Link to={`/recipes/${item.id}`}>View Recipe</Link>
+                  <Link to={`/recipes/${item.id}`}>View Recipe</Link>
+                </section>
               </section>
             ))}
           </div>

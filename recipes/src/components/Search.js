@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Nav from "./Nav";
 
 function Search(props) {
   const history = useHistory();
@@ -16,6 +17,7 @@ function Search(props) {
 
   return (
     <div>
+      <Nav />
       <form className="searchbar" onSubmit={searchAPI}>
         <input
           placeholder="Search Recipes..."
