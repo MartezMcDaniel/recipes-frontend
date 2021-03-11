@@ -18,35 +18,42 @@ function Recipes({ recipes, deleteRecipe }) {
   return (
     <div>
       <Search />
-      {recipes.map((item, index) => (
-        <section key={index} className="recipe-card">
-          <h1 key={item.id}>
-            <Link to={`/recipes/${item.id}`}>{item.name}</Link>
-          </h1>
-          <img src={item.image} alt="Food" />
-          <h4>{item.description}</h4>
-          <h2>{item.cuisine}</h2>
-          <h3>{item.ingredients}</h3>
-          <h4>{item.directions}</h4>
-          <Link
-            to={{
-              pathname: `/recipes/edit/${item.id}`,
-              state: {
-                ...item,
-              },
-            }}
-          >
-            <button>Update Recipe</button>
-          </Link>
-          <button
-            onClick={() => {
-              deleteRecipeBackend(item.id);
-            }}
-          >
-            Delete
-          </button>
-        </section>
-      ))}
+      <div className="entire-page">
+        <div className="page">
+          <div className="container">
+            {recipes.map((item, index) => (
+              <section key={index} className="recipe-card">
+                <h1 key={item.id}>
+                  <img src={item.image} alt="Food" />
+                </h1>
+                <h1>{item.name}</h1>
+                <h4>{item.description}</h4>
+                <h4>{item.cuisine}</h4>
+
+                <Link
+                  to={{
+                    pathname: `/recipes/edit/${item.id}`,
+                    state: {
+                      ...item,
+                    },
+                  }}
+                >
+                  <button>Update Recipe</button>
+                </Link>
+                <button
+                  onClick={() => {
+                    deleteRecipeBackend(item.id);
+                  }}
+                >
+                  Delete
+                </button>
+
+                <Link to={`/recipes/${item.id}`}>View Recipe</Link>
+              </section>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
