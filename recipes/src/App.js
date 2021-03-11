@@ -9,6 +9,8 @@ import PostForm from "./components/PostForm";
 import RecipeDetail from "./components/RecipeDetail";
 import Nav from "./components/Nav";
 import editRecipe from "./components/EditRecipe";
+import Home from "./components/Home";
+import Search from "./components/Search";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -50,8 +52,10 @@ function App() {
     <Router>
       <div>
         <Nav />
-
         <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/" exact render={() => <Home />} />
+          <Route path="/search" exact render={() => <Search />} />
           <Route
             exact
             path="/recipes"

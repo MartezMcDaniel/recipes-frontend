@@ -32,13 +32,23 @@ function RecipeDetail() {
   }, [id]);
 
   return (
-    <div className="recipe-card">
+    <div>
       {Object.keys(recipe).length > 0 ? (
         <section>
-          <p>{recipe.name}</p>
+          <p style={{ fontSize: "20px" }}>{recipe.name}</p>
+          <img
+            style={{ maxWidth: "600px", maxHeight: "600px" }}
+            src={recipe.image}
+            alt="food"
+          />
 
-          <p>{recipe.ingredients}</p>
-          <img src={recipe.image} alt="food" />
+          <p>
+            Ingredients: <br />
+            {recipe.ingredients}
+          </p>
+          <p>
+            Directions: <br /> {recipe.directions}
+          </p>
         </section>
       ) : null}
     </div>

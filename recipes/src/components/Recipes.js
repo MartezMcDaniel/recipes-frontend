@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
-import Search from "./Search";
 
 function Recipes({ recipes, deleteRecipe }) {
   const deleteRecipeBackend = async (id) => {
@@ -17,7 +16,6 @@ function Recipes({ recipes, deleteRecipe }) {
 
   return (
     <div>
-      <Search />
       <div className="entire-page">
         <div className="page">
           <div className="container">

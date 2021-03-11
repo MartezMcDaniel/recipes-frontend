@@ -3,26 +3,33 @@ import { Link } from "react-router-dom";
 
 function Nav(props) {
   return (
-    <nav className="navbar">
-      <h3>Veggieland</h3>
-      <ul className="bullets">
-        <Link
-          style={{ color: "inherit", textDecoration: "inherit" }}
-          to="/recipes"
-        >
-          <li>Home</li>
+    <div className="navbar">
+      <nav>
+        <Link to="/" style={{ color: "inherit", textDecoration: "inherit" }}>
+          <h3>VegOut</h3>
         </Link>
-        <Link style={{ color: "inherit", textDecoration: "inherit" }}>
-          <li>Login</li>
-        </Link>
-        <Link
-          style={{ color: "inherit", textDecoration: "inherit" }}
-          to="/create"
-        >
-          <li>Create</li>
-        </Link>
-      </ul>
-    </nav>
+        <ul className="bullets">
+          <Link
+            style={{ color: "inherit", textDecoration: "inherit" }}
+            to="/recipes"
+          >
+            <li>Saved Recipes</li>
+          </Link>
+          <Link
+            to="/search"
+            style={{ color: "inherit", textDecoration: "inherit" }}
+          >
+            <li>Search</li>
+          </Link>
+          <Link
+            style={{ color: "inherit", textDecoration: "inherit" }}
+            to="/create"
+          >
+            <li>Create</li>
+          </Link>
+        </ul>
+      </nav>
+    </div>
   );
 }
 

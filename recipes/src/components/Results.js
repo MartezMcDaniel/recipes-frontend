@@ -33,29 +33,31 @@ function Results(props) {
   }, []);
 
   return (
-    <div>
-      <div className="entire-page">
-        {Object.keys(recipes).length > 0 ? (
-          <section>
-            {recipes.map((item) => (
-              <div className="recipe-card">
-                <img src={item.recipe.image} alt="image" />
-                <p>{item.recipe.label}</p>
-                <a href={item.recipe.url} target="blank">
-                  View Recipe
-                </a>
-              </div>
-            ))}
-          </section>
-        ) : (
-          <section>
-            "Item Not Found"
-            <Link to="/recipes">
-              <button>Return to Search</button>
-            </Link>
-          </section>
-        )}
-      </div>
+    <div className="entire-card">
+      {Object.keys(recipes).length > 0 ? (
+        <section>
+          {recipes.map((item) => (
+            <div className="card">
+              <img src={item.recipe.image} alt="image" />
+              <p style={{ fontSize: "30px" }}>{item.recipe.label}</p>
+              <a
+                style={{ fontSize: "20px" }}
+                href={item.recipe.url}
+                target="blank"
+              >
+                View Recipe
+              </a>
+            </div>
+          ))}
+        </section>
+      ) : (
+        <section>
+          "Item Not Found"
+          <Link to="/recipes">
+            <button>Return to Search</button>
+          </Link>
+        </section>
+      )}
     </div>
   );
 }
