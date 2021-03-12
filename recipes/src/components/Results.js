@@ -11,12 +11,14 @@ function Results(props) {
 
   const [recipes, setRecipes] = useState([]);
 
-  const APP_ID = process.env.APP_ID;
-  const APP_KEY = process.env.APP_KEY;
+  const API_ID = process.env.REACT_APP_API_ID;
+  const API_KEY = process.env.REACT_APP_API_KEY;
+
+  console.log(process.env);
 
   useEffect(() => {
     const searchAPI = async () => {
-      const url = `https://api.edamam.com/search?q=${search}&health=vegetarian&health=vegan&app_id=${APP_ID}&app_key=${APP_KEY}&to=5`;
+      const url = `https://api.edamam.com/search?q=${search}&health=vegetarian&health=vegan&app_id=${API_ID}&app_key=${API_KEY}&to=5`;
       await axios
         .get(url)
         .then((res) => {
